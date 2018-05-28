@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Visualización de los resultados de la primera vuelta Colombia</title>
+
+
+  <link rel="stylesheet" href="./lib/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="./lib/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+<style>
+  .tract {
+    stroke: #777;
+    stroke-width: 0.05px;
+    pointer-events: all;
+  }
+  .tract:hover {
+    stroke: orange;
+    pointer-events: all;
+
+  }
+  .tract-border {
+    fill: none;
+    /*stroke: #777;*/
+    stroke-width: 0.05px;
+    pointer-events: none;
+  }
+  @media (max-width: 767px) {
+    .label {
+      transform: rotate(-45deg) translate(-10px, 25px);
+    }
+  }
+  .tract-border-state {
+    fill: none;
+    stroke: #333;
+    stroke-width: 0.5px;
+    pointer-events: none;
+  }
+  .legend {
+    font-family: sans-serif;
+    font-size: 10pt;
+
+  }
+  .legendTitle {
+    font-weight: bold;
+    font-size:11pt;
+  }
+  .background {
+    fill:#f5f5f5;
+  }
+  body {
+    background: #f5f5f5;
+    /*font-family: sans-serif;*/
+  }
+  .bar {
+    font-family: sans-serif;
+    font-size: 8pt;
+  }
+  #cityLegend {
+    font-family: sans-serif;
+    text-anchor: middle;
+  }
+  #details .background {
+    fill: #f5f5f5;
+    fill-opacity: 0.7;
+  }
+  svg {
+    width:100%;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <a href="https://github.com/john-guerra/resultadosPlebiscito"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+
+  <div class="row">
+    <div class="col-md-10 col-xs-10">
+      <h2>Resultados Preconteo por Ciudades</h2>
+      <h4>Haga click o pase el mouse para explorar</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-xs-12">
+      <div id="target" class="row"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-xs-10">
+      <p>Estos mapas muestran el porcentaje de votación por municipio para cada candidato. El porcentaje fue calculado con base al total de votos colectados</p>
+
+      <p>
+        GEO Json <a href="https://github.com/finiterank/mapa-colombia-js/blob/master/colombia-municipios.json">del proyecto mapa-colombia-js en github</a> de <a href="https://github.com/finiterank">Javier Moreno</a>
+      </p>
+      <p>
+        Desarrollado por <a href="http://johnguerra.co">John Alexis Guerra Gómez</a>
+      </p>
+
+
+    </div> <!-- col-md-10 -->
+    <div class="col-md-1">
+    </div>
+
+  </div> <!-- .row --></div>
+<script src="./lib/js/d3.v4.min.js"></script>
+<script src="./lib/js/d3-scale-chromatic.v1.min.js"></script>
+<script src="./lib/js/topojson.v1.min.js"></script>
+<script src="./lib/js/d3-legend.min.js"></script>
+<script src="./lib/js/jquery.min.js"></script>
+<script src="./lib/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script src="./js/choropletColombia.js"></script>
+<script src="./js/main.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-72531610-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>

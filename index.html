@@ -68,6 +68,12 @@
     fill: #f5f5f5;
     fill-opacity: 0.7;
   }
+
+  #inThreshold {
+    width: 100px;
+    display: inline-block;
+    margin-left: 10px;
+  }
   svg {
     width:100%;
   }
@@ -77,36 +83,43 @@
 <body>
 
 <div class="container">
-  <a href="https://github.com/john-guerra/resultadosPlebiscito"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+  <a href="https://github.com/john-guerra/resultadosPrimeraVuelta2018"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
 
-  <div class="row">
-    <div class="col-md-10 col-xs-10">
-      <h2>Resultados Preconteo por Ciudades</h2>
-      <h4>Haga click o pase el mouse para explorar</h4>
-    </div>
-  </div>
   <div class="row">
     <div class="col-md-12 col-xs-12">
-      <div id="target" class="row"></div>
+      <h2>Resultados Primera Vuelta por Ciudades</h2>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-10 col-xs-10">
-      <p>Estos mapas muestran el porcentaje de votación por municipio para cada candidato. El porcentaje fue calculado con base al total de votos colectados</p>
 
+  <div class="row">
+    <div class="col-md-8 col-xs-8">
+      <p>Estos mapas muestran el porcentaje de votación por municipio para cada candidato. El porcentaje fue calculado con base en el total de votos colectados. Algunas no tienen color o valor asignado porque no se pudo reconciliar su nombre con los datos entregados por la registraduría</p>
+      <p>Haga click o pase el mouse para explorar</p>
+
+    </div> <!-- col-md-12 -->
+  </div> <!-- .row -->
+
+
+  <div class="row">
+    <div class="col-md-12 col-xs-12">
+      <label for="inThreshold">Hacer oscuro el municipio por encima de <input id="inThreshold" type="range" min=0 max=1.0 step="0.05" value="0.8"> <span id="spanThreshold">80%</span></label>
+      <div id="target" class="row"></div>
+    </div>
+  </div> <!-- row -->
+
+  <div class="row">
+    <div class="col-md-8 col-xs-8">
       <p>
-        GEO Json <a href="https://github.com/finiterank/mapa-colombia-js/blob/master/colombia-municipios.json">del proyecto mapa-colombia-js en github</a> de <a href="https://github.com/finiterank">Javier Moreno</a>
+        GEO Json <a href="https://github.com/finiterank/mapa-colombia-js/blob/master/colombia-municipios.json">del proyecto mapa-colombia-js en github</a> de <a href="https://github.com/finiterank">Javier Moreno</a>. <a href="https://twitter.com/infrahumano/status/1000950294262448128">Datos de los resultados de la primera vuelta también liberados por Javier</a>.
       </p>
       <p>
         Desarrollado por <a href="http://johnguerra.co">John Alexis Guerra Gómez</a>
       </p>
 
+    </div> <!-- col-md-12 -->
+  </div> <!-- .row -->
 
-    </div> <!-- col-md-10 -->
-    <div class="col-md-1">
-    </div>
 
-  </div> <!-- .row --></div>
 <script src="./lib/js/d3.v4.min.js"></script>
 <script src="./lib/js/d3-scale-chromatic.v1.min.js"></script>
 <script src="./lib/js/topojson.v1.min.js"></script>
@@ -115,6 +128,7 @@
 <script src="./lib/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
+<!-- <script src="./js/choropletColombia.js"></script> -->
 <script src="./js/choropletColombia.js"></script>
 <script src="./js/main.js"></script>
 

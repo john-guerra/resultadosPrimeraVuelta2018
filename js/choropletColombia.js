@@ -2,14 +2,16 @@
 
 function choropletColombia (selection, mapData, data, result, dictCities, color, zoom) {
 
-  var svg = d3.select(selection),
-    width = $(selection.node()).width(),
+  var me ={},
+    svg = d3.select(selection),
+    width = $(selection).width(),
     height = width>400 ? $(document).height()-200 : width*1.2,
     margin = { top: 20, bottom: width>767 ? 20 : 100, right: 20, left: 0},
     centered,
     fmt = d3.format(" >5.2%");
 
-  svg;
+  svg.attr("width", width)
+    .attr("height", height);
 
   var land = topojson.feature(mapData, {
     type: "GeometryCollection",
@@ -49,28 +51,30 @@ function choropletColombia (selection, mapData, data, result, dictCities, color,
       .rotate([74 + 30 / 60, -38 - 50 / 60])
       .fitExtent([[margin.left, margin.top], [width-margin.right, height-margin.bottom]], landState));
 
-  g.selectAll("path")
+  var tracts = g.selectAll(".tract")
     .data(land.features)
     .enter().append("path")
     .attr("class", "tract")
     .on("click", clicked)
     // .on("mouseover", updateDetails)
     .style("fill", function (d) {
-      var city = dictCities[d.properties.name];
+      var city = dictCities[d.properties.name+d.properties.dpt];
       if (city)
         return color(city[result]);
       else {
         console.log(d.properties.name + "," + d.properties.dpt);
-        return color(0);
+        return "none";
       }
     })
-    .attr("d", path)
+    .attr("d", path);
+
+  tracts
     .append("title")
     .text(function(d) {
-      var city = dictCities[d.properties.name];
+      var city = dictCities[d.properties.name+d.properties.dpt];
       var msg = d.properties.name + ", " + d.properties.dpt;
       if (city)
-        msg += fmt(city[result]);
+        msg += " "+ fmt(city[result]);
       return msg;
     });
   g.append("path")
@@ -151,7 +155,22 @@ function choropletColombia (selection, mapData, data, result, dictCities, color,
 
 
 
+  me.updateColor = function (color) {
+    tracts
+      .style("fill", function (d) {
+        var city = dictCities[d.properties.name+d.properties.dpt];
+        if (city)
+          return color(city[result]);
+        else {
+          // console.log(d.properties.name + "," + d.properties.dpt);
+          return "none";
+        }
+      });
+    svg.select(".legend")
+      .call(legendLinear.scale(color));
+  };
 
+  return me;
 
 }
 
